@@ -239,11 +239,11 @@ def load_user(username):
 def insertUser(first_name, last_name,dni, email, password, role,fecha_nacimiento):
     date = datetime.datetime.now()
     con = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     cur = con.cursor()
     cur.execute(
         "INSERT INTO users (first_name,last_name,dni,email,password,role,date_added,date_modified,fecha_nacimiento) VALUES (?,?,?,?,?,?,?,?,?)",
@@ -339,9 +339,9 @@ def login():
         conn = mariadb.connect(
          host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
-         user='adminADHD',
+         user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         curs = conn.cursor()
         curs.execute("SELECT * FROM users where email = (?)", [request.form['username'].lower()])
         user = curs.fetchone()
@@ -466,11 +466,11 @@ def visitor_add_user():
         return redirect(url_for('login'))
         # return redirect(url_for('visitor_users'))
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
