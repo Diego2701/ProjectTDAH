@@ -195,11 +195,11 @@ app.error_handler_spec[None][404] = page_not_found
 
 import mariadb
 conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
 
 #conn = sqlite3.connect('database.db')
@@ -221,11 +221,11 @@ login.login_view = 'login'
 @login.user_loader
 def load_user(username):
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     curs = conn.cursor()
     curs.execute("SELECT * from users where email = (?)", [username.lower()])
     lu = curs.fetchone()
@@ -239,11 +239,11 @@ def load_user(username):
 def insertUser(first_name, last_name,dni, email, password, role,fecha_nacimiento):
     date = datetime.datetime.now()
     con = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     cur = con.cursor()
     cur.execute(
         "INSERT INTO users (first_name,last_name,dni,email,password,role,date_added,date_modified,fecha_nacimiento) VALUES (?,?,?,?,?,?,?,?,?)",
@@ -337,11 +337,11 @@ def login():
         return redirect(url_for('home'))
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         curs = conn.cursor()
         curs.execute("SELECT * FROM users where email = (?)", [request.form['username'].lower()])
         user = curs.fetchone()
@@ -382,11 +382,11 @@ def logout():
 # @roles_required('user', 'contributor', 'admin','visitor')
 def my_account(user_id):
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     curs = conn.cursor()
     curs.execute("SELECT * FROM users where user_id = (?)", [user_id])
     edit_account = curs.fetchone()
@@ -406,11 +406,11 @@ def my_account(user_id):
 def update_myaccount(user_id):
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         cur = conn.cursor()
         form = request.form
         password = request.form['password']
@@ -445,11 +445,11 @@ def visitor_add_user():
         form = request.form
         password = request.form['password']
         conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         curs = conn.cursor()
         curs.execute("SELECT * FROM users where email = (?)", [request.form['email'].lower()])
         email = curs.fetchone()
@@ -466,11 +466,11 @@ def visitor_add_user():
         return redirect(url_for('login'))
         # return redirect(url_for('visitor_users'))
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
@@ -490,11 +490,11 @@ def visitor_add_user():
 @app.route('/users', methods=['GET', 'POST'])
 def visitor_users():
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
@@ -527,22 +527,22 @@ def recuperar_usuario():
 @app.route('/edit-user-visitor/<user_id>', methods=['GET', 'POST'])
 def visitor_edit_user(user_id):
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     cur = conn.cursor()
     cur.execute("select *  FROM  users WHERE user_id = (?)", (user_id))
     edit_user = cur.fetchone()
     conn.close()
     # edit_user = users.find_one({'_id': ObjectId(user_id)})
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
@@ -577,11 +577,11 @@ import pickle
 @app.route('/correo_recuperar', methods=['GET', 'POST'])
 def correo_recuperar():
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     curs = conn.cursor()
     curs.execute("SELECT * FROM users where email = (?)", [request.form['username'].lower()])
     email = curs.fetchone()
@@ -607,11 +607,11 @@ def correo_recuperar():
 def update_myaccount(user_id):
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         cur = conn.cursor()
         form = request.form
         password = request.form['password']
@@ -651,11 +651,11 @@ def update_myaccount(user_id):
 def admin_users():
     # return render_template('users.html', all_roles=roles.find(), all_users=users.find())
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
@@ -677,11 +677,11 @@ import mariadb
 @app.route('/reporte', methods=("POST", "GET"))
 def reporte():
     conn = mariadb.connect(
-        host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+        host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
         port=3306,
         user='admin',
         password='prueba123456',
-        database='base')
+        database='baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT * FROM register')
@@ -704,11 +704,11 @@ from flask import jsonify
 @app.route('/page_test')
 def page_test():
     conn = mariadb.connect(
-        host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+        host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
         port=3306,
         user='admin',
         password='prueba123456',
-        database='base')
+        database='baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT * FROM register')
@@ -960,7 +960,7 @@ def registro_paciente():
         prediccion = loaded_model.predict_proba(X)
         date = datetime.datetime.now()
         con = mariadb.connect(
-            host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+            host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
             port=3306,
             user='admin',
             password='prueba123456',
@@ -975,11 +975,11 @@ def registro_paciente():
         return redirect(url_for('home'))
 
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
@@ -1002,11 +1002,11 @@ def admin_add_user():
         form = request.form
         password = request.form['password']
         conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         curs = conn.cursor()
         curs.execute("SELECT * FROM users where email = (?)", [request.form['email']])
         email = curs.fetchone()
@@ -1034,11 +1034,11 @@ def admin_add_user():
         return redirect(url_for('admin_users'))
 
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
@@ -1075,22 +1075,22 @@ def ficha():
 @roles_required('admin','Psicólogo')
 def admin_delete_user(user_id):
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     cur = conn.cursor()
     cur.execute("SELECT * FROM users WHERE user_id = (?)", (user_id,))
     delete_user = cur.fetchone()
     conn.close()
     if delete_user:
         conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         cur = conn.cursor()
         cur.execute("DELETE FROM  users WHERE user_id = (?)", (user_id,))
         conn.commit()
@@ -1107,21 +1107,21 @@ def admin_delete_user(user_id):
 @roles_required('admin','Psicólogo')
 def admin_edit_user(user_id):
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     cur = conn.cursor()
     cur.execute("select *  FROM  users WHERE user_id = (?)", (user_id,))
     edit_user = cur.fetchone()
     conn.close()
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
 
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
@@ -1144,11 +1144,11 @@ def admin_edit_user(user_id):
 def admin_update_user(user_id):
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
         cur = conn.cursor()
         form = request.form
         password = request.form['password']
@@ -1170,11 +1170,11 @@ def admin_update_user(user_id):
         flash(update_account[3] + ' ha sido modificado.', 'success')
         return redirect(url_for('admin_users'))
     conn = mariadb.connect(
-         host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
+         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
-         database = 'base')
+         database = 'baseADHD')
     cur = conn.cursor()
     cur.execute('SELECT roles_name FROM roles')
     roles = cur.fetchall()
