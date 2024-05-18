@@ -195,7 +195,7 @@ app.error_handler_spec[None][404] = page_not_found
 
 import mariadb
 conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -221,7 +221,7 @@ login.login_view = 'login'
 @login.user_loader
 def load_user(username):
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -239,7 +239,7 @@ def load_user(username):
 def insertUser(first_name, last_name,dni, email, password, role,fecha_nacimiento):
     date = datetime.datetime.now()
     con = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -337,7 +337,7 @@ def login():
         return redirect(url_for('home'))
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -382,7 +382,7 @@ def logout():
 # @roles_required('user', 'contributor', 'admin','visitor')
 def my_account(user_id):
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -406,7 +406,7 @@ def my_account(user_id):
 def update_myaccount(user_id):
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -445,7 +445,7 @@ def visitor_add_user():
         form = request.form
         password = request.form['password']
         conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -466,7 +466,7 @@ def visitor_add_user():
         return redirect(url_for('login'))
         # return redirect(url_for('visitor_users'))
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -490,7 +490,7 @@ def visitor_add_user():
 @app.route('/users', methods=['GET', 'POST'])
 def visitor_users():
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -527,7 +527,7 @@ def recuperar_usuario():
 @app.route('/edit-user-visitor/<user_id>', methods=['GET', 'POST'])
 def visitor_edit_user(user_id):
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -538,7 +538,7 @@ def visitor_edit_user(user_id):
     conn.close()
     # edit_user = users.find_one({'_id': ObjectId(user_id)})
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -577,7 +577,7 @@ import pickle
 @app.route('/correo_recuperar', methods=['GET', 'POST'])
 def correo_recuperar():
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -607,7 +607,7 @@ def correo_recuperar():
 def update_myaccount(user_id):
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -651,7 +651,7 @@ def update_myaccount(user_id):
 def admin_users():
     # return render_template('users.html', all_roles=roles.find(), all_users=users.find())
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -677,7 +677,7 @@ import mariadb
 @app.route('/reporte', methods=("POST", "GET"))
 def reporte():
     conn = mariadb.connect(
-        host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+        host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
         port=3306,
         user='admin',
         password='prueba123456',
@@ -704,7 +704,7 @@ from flask import jsonify
 @app.route('/page_test')
 def page_test():
     conn = mariadb.connect(
-        host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+        host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
         port=3306,
         user='admin',
         password='prueba123456',
@@ -960,7 +960,7 @@ def registro_paciente():
         prediccion = loaded_model.predict_proba(X)
         date = datetime.datetime.now()
         con = mariadb.connect(
-            host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+            host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
             port=3306,
             user='admin',
             password='prueba123456',
@@ -975,7 +975,7 @@ def registro_paciente():
         return redirect(url_for('home'))
 
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1002,7 +1002,7 @@ def admin_add_user():
         form = request.form
         password = request.form['password']
         conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1034,7 +1034,7 @@ def admin_add_user():
         return redirect(url_for('admin_users'))
 
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1075,7 +1075,7 @@ def ficha():
 @roles_required('admin','Psicólogo')
 def admin_delete_user(user_id):
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1086,7 +1086,7 @@ def admin_delete_user(user_id):
     conn.close()
     if delete_user:
         conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1107,7 +1107,7 @@ def admin_delete_user(user_id):
 @roles_required('admin','Psicólogo')
 def admin_edit_user(user_id):
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1117,7 +1117,7 @@ def admin_edit_user(user_id):
     edit_user = cur.fetchone()
     conn.close()
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1144,7 +1144,7 @@ def admin_edit_user(user_id):
 def admin_update_user(user_id):
     if request.method == 'POST':
         conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
@@ -1170,7 +1170,7 @@ def admin_update_user(user_id):
         flash(update_account[3] + ' ha sido modificado.', 'success')
         return redirect(url_for('admin_users'))
     conn = mariadb.connect(
-         host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+         host='database3.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
          port= 3306,
          user='admin',
          password='prueba123456',
