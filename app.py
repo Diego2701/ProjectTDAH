@@ -13,7 +13,7 @@ from flask import render_template, jsonify
 import json
 import os
 app = Flask(__name__)
-app.secret_key = os.urandom(24)aw
+app.secret_key = os.urandom(24)
 login_manager = LoginManager()
 login_manager.init_app(app)
 import logging
