@@ -960,7 +960,7 @@ def registro_paciente():
         prediccion = loaded_model.predict_proba(X)
         date = datetime.datetime.now()
         con = mariadb.connect(
-            host='database.cl0ygy2y8t5d.us-east-2.rds.amazonaws.com',
+            host='database-1.ctdogw6p3pwb.us-east-2.rds.amazonaws.com',
             port=3306,
             user='admin',
             password='prueba123456',
